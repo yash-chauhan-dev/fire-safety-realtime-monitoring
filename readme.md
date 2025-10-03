@@ -1,11 +1,11 @@
 ## Architecture Diagram
 
-![Architecture Diagram](path/to/your/architecture-diagram.png)
+![Architecture Diagram](/assets/arcitecture-diagram.png)
 
 
 ## Node-RED Flow Image
 
-![Node-RED Flow](assets\nodered-flow-image.PNG)
+![Node-RED Flow](/assets/nodered-flow-image.png)
 
 
 
@@ -70,4 +70,5 @@ docker-compose up -d
 http://localhost:1880
 ```
 3. You should now see the Node-RED interface, where you can create and manage your flows.
+
 
