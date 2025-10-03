@@ -1,0 +1,277 @@
+x-image: &image
+  image: risingwavelabs/risingwave:v2.4.4
+
+services:
+  compactor:
+    <<: *image
+    command:
+      - compactor-node
+      - "--listen-addr"
+      - "0.0.0.0:6660"
+      - "--advertise-addr"
+      - "compactor:6660"
+      - "--meta-address"
+      - "http://meta-node:5690"
+    expose: ["6660", "1260"]
+    depends_on:
+      - meta-node
+      - minio
+    environment:
+      RUST_BACKTRACE: "1"
+      ENABLE_TELEMETRY: ${ENABLE_TELEMETRY:-true}
+    container_name: compactor
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'printf \"GET / HTTP/1.1\\n\\n\" > /dev/tcp/127.0.0.1/6660; exit $$?'"]
+      interval: 1s
+      timeout: 5s
+      retries: 5
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+    networks:
+      - iot-net
+
+  compute-node:
+    <<: *image
+    command:
+      - compute-node
+      - "--listen-addr"
+      - "0.0.0.0:5688"
+      - "--advertise-addr"
+      - "compute-node:5688"
+      - "--meta-address"
+      - "http://meta-node:5690"
+    expose: ["5688", "1222"]
+    depends_on:
+      - meta-node
+      - minio
+    environment:
+      RUST_BACKTRACE: "1"
+      ENABLE_TELEMETRY: ${ENABLE_TELEMETRY:-true}
+    container_name: compute-node
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'printf \"GET / HTTP/1.1\\n\\n\" > /dev/tcp/127.0.0.1/5688; exit $$?'"]
+      interval: 1s
+      timeout: 5s
+      retries: 5
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1536M
+        reservations:
+          memory: 1024M
+    networks:
+      - iot-net
+
+  postgres:
+    image: "postgres:15-alpine"
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=metadata
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    expose: ["5432"]
+    ports:
+      - "8432:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    networks:
+      - iot-net
+
+  frontend-node:
+    <<: *image
+    command:
+      - frontend-node
+      - "--listen-addr"
+      - "0.0.0.0:4566"
+      - "--meta-addr"
+      - "http://meta-node:5690"
+      - "--advertise-addr"
+      - "frontend-node:4566"
+    expose: ["4566"]
+    ports:
+      - "4566:4566"
+    depends_on:
+      - meta-node
+    environment:
+      RUST_BACKTRACE: "1"
+      ENABLE_TELEMETRY: ${ENABLE_TELEMETRY:-true}
+    container_name: frontend-node
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '> /dev/tcp/127.0.0.1/4566; exit $$?'"]
+      interval: 1s
+      timeout: 5s
+      retries: 5
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    networks:
+      - iot-net
+
+  grafana:
+    image: "grafana/grafana-oss:11.5.8"
+    expose: ["3000"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+      - ./logo:/usr/share/grafana/public/logo
+    container_name: grafana
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'printf \"GET / HTTP/1.1\\n\\n\" > /dev/tcp/127.0.0.1/3000; exit $$?'"]
+      interval: 1s
+      timeout: 5s
+      retries: 5
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
+    networks:
+      - iot-net
+
+  meta-node:
+    <<: *image
+    command:
+      - meta-node
+      - "--listen-addr"
+      - "0.0.0.0:5690"
+      - "--advertise-addr"
+      - "meta-node:5690"
+      - "--dashboard-host"
+      - "0.0.0.0:5691"
+      - "--backend"
+      - sql
+      - "--sql-endpoint"
+      - "postgres://postgres:@postgres:5432/metadata"
+      - "--state-store"
+      - "hummock+minio://hummockadmin:hummockadmin@minio:9301/hummock001"
+      - "--data-directory"
+      - "hummock_001"
+    expose: ["5690", "1250", "5691"]
+    ports:
+      - "5690:5690"
+      - "5691:5691"
+    depends_on:
+      - "postgres"
+      - "minio"
+    environment:
+      RUST_BACKTRACE: "1"
+      ENABLE_TELEMETRY: ${ENABLE_TELEMETRY:-true}
+      RW_TELEMETRY_TYPE: ${RW_TELEMETRY_TYPE:-"docker-compose"}
+    container_name: meta-node
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'printf \"GET / HTTP/1.1\\n\\n\" > /dev/tcp/127.0.0.1/5690; exit $$?'"]
+      interval: 1s
+      timeout: 5s
+      retries: 5
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    networks:
+      - iot-net
+
+  minio:
+    image: "quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z"
+    command:
+      - server
+      - "--address"
+      - "0.0.0.0:9301"
+      - "--console-address"
+      - "0.0.0.0:9400"
+      - /data
+    expose: ["9301", "9400"]
+    ports:
+      - "9301:9301"
+      - "9400:9400"
+    volumes:
+      - ./minio:/data
+    entrypoint: |
+      /bin/sh -c '
+      set -e
+      mkdir -p "/data/hummock001"
+      /usr/bin/docker-entrypoint.sh "$$0" "$$@"
+      '
+    environment:
+      MINIO_CI_CD: "1"
+      MINIO_ROOT_PASSWORD: hummockadmin
+      MINIO_ROOT_USER: hummockadmin
+      MINIO_DOMAIN: "minio"
+    container_name: minio
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'printf \"GET / HTTP/1.1\\n\\n\" > /dev/tcp/127.0.0.1/9301; exit $$?'"]
+      interval: 1s
+      timeout: 5s
+      retries: 5
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    networks:
+      - iot-net
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0.22-openssl
+    container_name: mosquitto
+    ports:
+      - "1883:1883"      # MQTT
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    restart: always
+    healthcheck:
+      test: ["CMD", "mosquitto_sub", "-h", "localhost", "-t", "$$SYS/#", "-C", "1"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
+    networks:
+      - iot-net
+
+volumes:
+  postgres:
+    external: false
+  grafana:
+    external: false
+  minio:
+    external: false
+
+networks:
+  iot-net:
+    driver: bridge

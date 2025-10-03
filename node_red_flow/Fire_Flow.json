@@ -1,0 +1,1714 @@
+[
+    {
+        "id": "b9c5aa0aa5b4e111",
+        "type": "tab",
+        "label": "Energy Meters 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c163c920778ce41b",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM1 - Current",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "2998",
+        "quantity": "6",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "be5c1842d28c2514"
+            ],
+            [
+                "68bc7103bff1a4d1"
+            ]
+        ]
+    },
+    {
+        "id": "930750a5eb6b88fd",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM1 - Voltage",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "3018",
+        "quantity": "14",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 580,
+        "y": 260,
+        "wires": [
+            [
+                "c1a9c10a30f86d62"
+            ],
+            [
+                "321994ddead566cf"
+            ]
+        ]
+    },
+    {
+        "id": "d707946d1ba0e5d1",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM1 - Power Factor",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "3082",
+        "quantity": "2",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 600,
+        "y": 440,
+        "wires": [
+            [
+                "b8b5e56d252e3181"
+            ],
+            [
+                "4bcb1bad837040be"
+            ]
+        ]
+    },
+    {
+        "id": "7eb3371d259992a7",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM1 - Active Power",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "3058",
+        "quantity": "2",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 590,
+        "y": 320,
+        "wires": [
+            [
+                "297b27f8bab53c98"
+            ],
+            [
+                "56ddfc4f12ac8481"
+            ]
+        ]
+    },
+    {
+        "id": "22024b1e948e31ef",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM1 - Apparent Power",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "3074",
+        "quantity": "2",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 600,
+        "y": 380,
+        "wires": [
+            [
+                "bcf9b3a8db518831"
+            ],
+            [
+                "e24b0271cc448e76"
+            ]
+        ]
+    },
+    {
+        "id": "3a754d962dbd0e79",
+        "type": "inject",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Start Polling",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "meter1",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 200,
+        "wires": [
+            [
+                "c163c920778ce41b"
+            ]
+        ]
+    },
+    {
+        "id": "68bc7103bff1a4d1",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "930750a5eb6b88fd"
+            ]
+        ]
+    },
+    {
+        "id": "e24b0271cc448e76",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 440,
+        "wires": [
+            [
+                "d707946d1ba0e5d1"
+            ]
+        ]
+    },
+    {
+        "id": "321994ddead566cf",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 320,
+        "wires": [
+            [
+                "7eb3371d259992a7"
+            ]
+        ]
+    },
+    {
+        "id": "56ddfc4f12ac8481",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 380,
+        "wires": [
+            [
+                "22024b1e948e31ef"
+            ]
+        ]
+    },
+    {
+        "id": "be5c1842d28c2514",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Current",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.currentA = regsToFloat([data[0], data[1]]);\nresult.currentB = regsToFloat([data[2], data[3]]);\nresult.currentC = regsToFloat([data[4], data[5]]);\n\nmsg.payload = result;\nmsg.topic = \"meter1\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 200,
+        "wires": [
+            [
+                "f606f0ab6ca1549d"
+            ]
+        ]
+    },
+    {
+        "id": "c1a9c10a30f86d62",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Voltage",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.voltageAB = regsToFloat([data[0], data[1]]);\nresult.voltageBC = regsToFloat([data[2], data[3]]);\nresult.voltageCA = regsToFloat([data[4], data[5]]);\nresult.voltageAN = regsToFloat([data[8], data[9]]);\nresult.voltageBN = regsToFloat([data[10], data[11]]);\nresult.voltageCN = regsToFloat([data[12], data[13]]);\nmsg.payload = result;\nmsg.topic = \"meter1\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 260,
+        "wires": [
+            [
+                "f606f0ab6ca1549d"
+            ]
+        ]
+    },
+    {
+        "id": "b8b5e56d252e3181",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Power Factor",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.powerfactor = regsToFloat([data[0], data[1]]);\n\nmsg.payload = result;\nmsg.topic = \"meter1\";\nmsg.complete = \"true\"\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 440,
+        "wires": [
+            [
+                "f606f0ab6ca1549d"
+            ]
+        ]
+    },
+    {
+        "id": "297b27f8bab53c98",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Active Power",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.activepower = regsToFloat([data[0], data[1]]);\n\nmsg.payload = result;\nmsg.topic = \"meter1\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 320,
+        "wires": [
+            [
+                "f606f0ab6ca1549d"
+            ]
+        ]
+    },
+    {
+        "id": "bcf9b3a8db518831",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Apparent Power",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.apparentpower = regsToFloat([data[0], data[1]]);\n\nmsg.payload = result;\nmsg.topic = \"meter1\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 380,
+        "wires": [
+            [
+                "f606f0ab6ca1549d"
+            ]
+        ]
+    },
+    {
+        "id": "f606f0ab6ca1549d",
+        "type": "join",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Join Data",
+        "mode": "custom",
+        "build": "merged",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": false,
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1160,
+        "y": 280,
+        "wires": [
+            [
+                "0d01401ca9e76d43"
+            ]
+        ]
+    },
+    {
+        "id": "0d01401ca9e76d43",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM1 - Data",
+        "func": "let deviceId = \"ENERGY-MTR-001\";\nlet deviceName = \"Main Meter\";\n\n// Start with the top-level fields\nlet flattenedPayload = {\n    device_id: deviceId,\n    device_name: deviceName,\n    time_stamp: new Date().toISOString()\n};\n\n// If msg.payload.reading exists and is an object, merge it at top-level\nif (msg.payload && typeof msg.payload.reading === 'object') {\n    flattenedPayload = { ...flattenedPayload, ...msg.payload.reading };\n}\n\n// If there are other top-level fields in msg.payload besides reading, merge them too\nfor (let key in msg.payload) {\n    if (key !== 'reading') {\n        flattenedPayload[key] = msg.payload[key];\n    }\n}\n\nmsg.payload = flattenedPayload;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 340,
+        "wires": [
+            [
+                "a128525778386e37"
+            ]
+        ]
+    },
+    {
+        "id": "8fb5317dd447b88a",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM2 - Current",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "2998",
+        "quantity": "6",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 600,
+        "y": 620,
+        "wires": [
+            [
+                "21323d4c9cb67a34"
+            ],
+            [
+                "8e8ad102a15c2102"
+            ]
+        ]
+    },
+    {
+        "id": "c138b961325df450",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM2 - Voltage",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "3018",
+        "quantity": "14",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 600,
+        "y": 680,
+        "wires": [
+            [
+                "c2db5ec21e69d9c0"
+            ],
+            [
+                "1a6eb4bad852b3c4"
+            ]
+        ]
+    },
+    {
+        "id": "55985be284af14a9",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM2 - Power Factor",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "3082",
+        "quantity": "2",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 620,
+        "y": 860,
+        "wires": [
+            [
+                "928010cf0407939e"
+            ],
+            [
+                "703b4821e7292090"
+            ]
+        ]
+    },
+    {
+        "id": "99c3be422960c5b3",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM2 - Active Power",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "3058",
+        "quantity": "2",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 610,
+        "y": 740,
+        "wires": [
+            [
+                "dfcdc0e55680ef86"
+            ],
+            [
+                "a6a1615176bec2b2"
+            ]
+        ]
+    },
+    {
+        "id": "4923ba83e1ac977d",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM2 - Apparent Power",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "3074",
+        "quantity": "2",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 620,
+        "y": 800,
+        "wires": [
+            [
+                "7446000c8aa72ab9"
+            ],
+            [
+                "b68a1b28b3093c76"
+            ]
+        ]
+    },
+    {
+        "id": "8e8ad102a15c2102",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 680,
+        "wires": [
+            [
+                "c138b961325df450"
+            ]
+        ]
+    },
+    {
+        "id": "b68a1b28b3093c76",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 860,
+        "wires": [
+            [
+                "55985be284af14a9"
+            ]
+        ]
+    },
+    {
+        "id": "1a6eb4bad852b3c4",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 740,
+        "wires": [
+            [
+                "99c3be422960c5b3"
+            ]
+        ]
+    },
+    {
+        "id": "a6a1615176bec2b2",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 800,
+        "wires": [
+            [
+                "4923ba83e1ac977d"
+            ]
+        ]
+    },
+    {
+        "id": "21323d4c9cb67a34",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Current",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.currentA = regsToFloat([data[0], data[1]]);\nresult.currentB = regsToFloat([data[2], data[3]]);\nresult.currentC = regsToFloat([data[4], data[5]]);\n\nmsg.payload = result;\nmsg.topic = \"meter1\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 620,
+        "wires": [
+            [
+                "1e42d5a50610ae9d"
+            ]
+        ]
+    },
+    {
+        "id": "c2db5ec21e69d9c0",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Voltage",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.voltageAB = regsToFloat([data[0], data[1]]);\nresult.voltageBC = regsToFloat([data[2], data[3]]);\nresult.voltageCA = regsToFloat([data[4], data[5]]);\nresult.voltageAN = regsToFloat([data[8], data[9]]);\nresult.voltageBN = regsToFloat([data[10], data[11]]);\nresult.voltageCN = regsToFloat([data[12], data[13]]);\nmsg.payload = result;\nmsg.topic = \"meter1\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 680,
+        "wires": [
+            [
+                "1e42d5a50610ae9d"
+            ]
+        ]
+    },
+    {
+        "id": "928010cf0407939e",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Power Factor",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.powerfactor = regsToFloat([data[0], data[1]]);\n\nmsg.payload = result;\nmsg.topic = \"meter1\";\nmsg.complete = \"true\"\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 860,
+        "wires": [
+            [
+                "1e42d5a50610ae9d"
+            ]
+        ]
+    },
+    {
+        "id": "dfcdc0e55680ef86",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Active Power",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.activepower = regsToFloat([data[0], data[1]]);\n\nmsg.payload = result;\nmsg.topic = \"meter1\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 740,
+        "wires": [
+            [
+                "1e42d5a50610ae9d"
+            ]
+        ]
+    },
+    {
+        "id": "7446000c8aa72ab9",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Parse Apparent Power",
+        "func": "let data = msg.payload;\n\nfunction regsToFloat(regs) {\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n\nlet result = {};\n\nresult.apparentpower = regsToFloat([data[0], data[1]]);\n\nmsg.payload = result;\nmsg.topic = \"meter1\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 800,
+        "wires": [
+            [
+                "1e42d5a50610ae9d"
+            ]
+        ]
+    },
+    {
+        "id": "1e42d5a50610ae9d",
+        "type": "join",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Join Data",
+        "mode": "custom",
+        "build": "merged",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": false,
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1180,
+        "y": 700,
+        "wires": [
+            [
+                "57abaff94a11e15e"
+            ]
+        ]
+    },
+    {
+        "id": "57abaff94a11e15e",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "EM2 - Data",
+        "func": "let deviceId = \"ENERGY-MTR-002\";\nlet deviceName = \"Secondary Meter\";\n\n// Start with the top-level fields\nlet flattenedPayload = {\n    device_id: deviceId,\n    device_name: deviceName,\n    time_stamp: new Date().toISOString()\n};\n\n// If msg.payload.reading exists and is an object, merge it at top-level\nif (msg.payload && typeof msg.payload.reading === 'object') {\n    flattenedPayload = { ...flattenedPayload, ...msg.payload.reading };\n}\n\n// If there are other top-level fields in msg.payload besides reading, merge them too\nfor (let key in msg.payload) {\n    if (key !== 'reading') {\n        flattenedPayload[key] = msg.payload[key];\n    }\n}\n\nmsg.payload = flattenedPayload;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 760,
+        "wires": [
+            [
+                "b38eb2dc7f7bd8f0"
+            ]
+        ]
+    },
+    {
+        "id": "4bcb1bad837040be",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 540,
+        "wires": [
+            [
+                "8fb5317dd447b88a"
+            ]
+        ]
+    },
+    {
+        "id": "7748bb65b4b60ad3",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "PLC - Main Hydrant Pump",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "3",
+        "dataType": "Input",
+        "adr": "0",
+        "quantity": "1",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 630,
+        "y": 1020,
+        "wires": [
+            [
+                "2598df4f37111206"
+            ],
+            [
+                "314564124b7d8d29"
+            ]
+        ]
+    },
+    {
+        "id": "3dc1f6263252c617",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "PLC - Hydrant Jockey Pump",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "3",
+        "dataType": "Input",
+        "adr": "2",
+        "quantity": "1",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 640,
+        "y": 1140,
+        "wires": [
+            [
+                "05d5283df47448c4"
+            ],
+            [
+                "341dc310114b246a"
+            ]
+        ]
+    },
+    {
+        "id": "a128525778386e37",
+        "type": "mqtt out",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Energy Meter 1 MQTT",
+        "topic": "/firesafety/pump/1/em",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5b217b1eb83e00a5",
+        "x": 1400,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "b38eb2dc7f7bd8f0",
+        "type": "mqtt out",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Energy Meter 2 MQTT",
+        "topic": "/firesafety/pump/2/em",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5b217b1eb83e00a5",
+        "x": 1400,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "5f3705dcb0527ff6",
+        "type": "mqtt out",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Status MQTT",
+        "topic": "/firesafety/pump/status",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5b217b1eb83e00a5",
+        "x": 1300,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "78dc3e32b6bd24d8",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "PLC - Sprinkler Pump",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "3",
+        "dataType": "Input",
+        "adr": "7",
+        "quantity": "1",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 620,
+        "y": 1260,
+        "wires": [
+            [
+                "c28b0e3c4c6d240e"
+            ],
+            [
+                "8e8712824917bd80"
+            ]
+        ]
+    },
+    {
+        "id": "60587947d4605522",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "PLC - Sprinkler Jockey Pump",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "3",
+        "dataType": "Input",
+        "adr": "9",
+        "quantity": "1",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 640,
+        "y": 1380,
+        "wires": [
+            [
+                "e010da4f638bd258"
+            ],
+            [
+                "c95d16a1b93cdf77"
+            ]
+        ]
+    },
+    {
+        "id": "2173e2ac7e1a0779",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "PLC - Main Hydrant Pump Trip",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "3",
+        "dataType": "Input",
+        "adr": "1",
+        "quantity": "1",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 650,
+        "y": 1080,
+        "wires": [
+            [
+                "9dfba3698d43ce39"
+            ],
+            [
+                "7173979eef468684"
+            ]
+        ]
+    },
+    {
+        "id": "bc4e57384bb979ce",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "PLC - Hydrant Jockey Pump Trip",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "3",
+        "dataType": "Input",
+        "adr": "3",
+        "quantity": "1",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 660,
+        "y": 1200,
+        "wires": [
+            [
+                "6b56a6372489c434"
+            ],
+            [
+                "52f6fe8dbb7506c1"
+            ]
+        ]
+    },
+    {
+        "id": "f2025be1b3bbe6c1",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "PLC - Sprinkler Pump Trip",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "3",
+        "dataType": "Input",
+        "adr": "8",
+        "quantity": "1",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 630,
+        "y": 1320,
+        "wires": [
+            [
+                "621d12bc9fe9a063"
+            ],
+            [
+                "77a857b5a8d45224"
+            ]
+        ]
+    },
+    {
+        "id": "686267c32a53e5de",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "PLC - Sprinkler Jockey Pump Trip",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "3",
+        "dataType": "Input",
+        "adr": "10",
+        "quantity": "1",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 660,
+        "y": 1440,
+        "wires": [
+            [
+                "8ff737598c7ccc4f"
+            ],
+            [
+                "123d57216b250fcb"
+            ]
+        ]
+    },
+    {
+        "id": "05d5283df47448c4",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Operation",
+        "func": "// Handle both array and direct boolean cases\nlet pumpStatus;\n\n// If payload is array-like, grab [0], else use payload directly\nif (Array.isArray(msg.payload)) {\n    pumpStatus = msg.payload[0];\n} else {\n    pumpStatus = msg.payload;\n}\n\n// Normalize pumpStatus to a real boolean\nif (typeof pumpStatus === \"string\") {\n    pumpStatus = pumpStatus.toLowerCase() === \"true\";\n} else if (typeof pumpStatus === \"number\") {\n    pumpStatus = pumpStatus !== 0;\n}\n\n// Convert to ON / OFF\nlet statusStr = pumpStatus ? \"ON\" : \"OFF\";\n\n// Build JSON payload\nmsg.payload = {\n    device_id: \"ENERGY-MTR-001\",   \n    pump_id: \"PUMP-2\",     // update as needed\n    device_name: \"Hydrant_Jockey_Pump\",   // update as needed\n    time_stamp: new Date().toISOString(),\n    status: statusStr,\n    st: pumpStatus\n};\n\n// Ensure MQTT topic is set\nmsg.topic = \"/firesafety/pump/status\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 1140,
+        "wires": [
+            [
+                "5f3705dcb0527ff6"
+            ]
+        ]
+    },
+    {
+        "id": "c28b0e3c4c6d240e",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Operation",
+        "func": "// Handle both array and direct boolean cases\nlet pumpStatus;\n\n// If payload is array-like, grab [0], else use payload directly\nif (Array.isArray(msg.payload)) {\n    pumpStatus = msg.payload[0];\n} else {\n    pumpStatus = msg.payload;\n}\n\n// Normalize pumpStatus to a real boolean\nif (typeof pumpStatus === \"string\") {\n    pumpStatus = pumpStatus.toLowerCase() === \"true\";\n} else if (typeof pumpStatus === \"number\") {\n    pumpStatus = pumpStatus !== 0;\n}\n\n// Convert to ON / OFF\nlet statusStr = pumpStatus ? \"ON\" : \"OFF\";\n\n// Build JSON payload\nmsg.payload = {\n    device_id: \"ENERGY-MTR-002\",\n    pump_id: \"PUMP-3\",        // update as needed\n    device_name: \"Sprinkler_Pump\",   // update as needed\n    time_stamp: new Date().toISOString(),\n    status: statusStr,\n    st: pumpStatus\n};\n\n// Ensure MQTT topic is set\nmsg.topic = \"/firesafety/pump/status\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 1260,
+        "wires": [
+            [
+                "5f3705dcb0527ff6"
+            ]
+        ]
+    },
+    {
+        "id": "e010da4f638bd258",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Operation",
+        "func": "// Handle both array and direct boolean cases\nlet pumpStatus;\n\n// If payload is array-like, grab [0], else use payload directly\nif (Array.isArray(msg.payload)) {\n    pumpStatus = msg.payload[0];\n} else {\n    pumpStatus = msg.payload;\n}\n\n// Normalize pumpStatus to a real boolean\nif (typeof pumpStatus === \"string\") {\n    pumpStatus = pumpStatus.toLowerCase() === \"true\";\n} else if (typeof pumpStatus === \"number\") {\n    pumpStatus = pumpStatus !== 0;\n}\n\n// Convert to ON / OFF\nlet statusStr = pumpStatus ? \"ON\" : \"OFF\";\n\n// Build JSON payload\nmsg.payload = {\n    device_id: \"ENERGY-MTR-002\",  \n    pump_id: \"PUMP-4\",      // update as needed\n    device_name: \"Sprinkler_Jockey_Pump\",   // update as needed\n    time_stamp: new Date().toISOString(),\n    status: statusStr,\n    st: pumpStatus\n};\n\n// Ensure MQTT topic is set\nmsg.topic = \"/firesafety/pump/status\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 1380,
+        "wires": [
+            [
+                "5f3705dcb0527ff6"
+            ]
+        ]
+    },
+    {
+        "id": "2598df4f37111206",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Operation",
+        "func": "// Handle both array and direct boolean cases\nlet pumpStatus;\n\n// If payload is array-like, grab [0], else use payload directly\nif (Array.isArray(msg.payload)) {\n    pumpStatus = msg.payload[0];\n} else {\n    pumpStatus = msg.payload;\n}\n\n// Normalize pumpStatus to a real boolean\nif (typeof pumpStatus === \"string\") {\n    pumpStatus = pumpStatus.toLowerCase() === \"true\";\n} else if (typeof pumpStatus === \"number\") {\n    pumpStatus = pumpStatus !== 0;\n}\n\n// Convert to ON / OFF\nlet statusStr = pumpStatus ? \"ON\" : \"OFF\";\n\n\n// Build JSON payload\nmsg.payload = {\n    device_id: \"ENERGY-MTR-001\",\n    pump_id: \"PUMP-1\",        // update as needed\n    device_name: \"Main_Hydrant_Pump\",   // update as needed\n    time_stamp: new Date().toISOString(),\n    status: statusStr,\n    st: pumpStatus\n};\n\n// Ensure MQTT topic is set\nmsg.topic = \"/firesafety/pump/status\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 1020,
+        "wires": [
+            [
+                "5f3705dcb0527ff6"
+            ]
+        ]
+    },
+    {
+        "id": "703b4821e7292090",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 940,
+        "wires": [
+            [
+                "7748bb65b4b60ad3"
+            ]
+        ]
+    },
+    {
+        "id": "7173979eef468684",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1140,
+        "wires": [
+            [
+                "3dc1f6263252c617"
+            ]
+        ]
+    },
+    {
+        "id": "52f6fe8dbb7506c1",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1260,
+        "wires": [
+            [
+                "78dc3e32b6bd24d8"
+            ]
+        ]
+    },
+    {
+        "id": "77a857b5a8d45224",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1380,
+        "wires": [
+            [
+                "60587947d4605522"
+            ]
+        ]
+    },
+    {
+        "id": "62e031ae070fed54",
+        "type": "modbus-getter",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "PLC - Diesel Pump",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "3",
+        "dataType": "Input",
+        "adr": "4",
+        "quantity": "1",
+        "server": "8dbea5168bd31e92",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 610,
+        "y": 1500,
+        "wires": [
+            [
+                "069cb0ebda2ee792"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "069cb0ebda2ee792",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Operation",
+        "func": "// Handle both array and direct boolean cases\nlet pumpStatus;\n\n// If payload is array-like, grab [0], else use payload directly\nif (Array.isArray(msg.payload)) {\n    pumpStatus = msg.payload[0];\n} else {\n    pumpStatus = msg.payload;\n}\n\n// Normalize pumpStatus to a real boolean\nif (typeof pumpStatus === \"string\") {\n    pumpStatus = pumpStatus.toLowerCase() === \"true\";\n} else if (typeof pumpStatus === \"number\") {\n    pumpStatus = pumpStatus !== 0;\n}\n\n// Convert to ON / OFF\nlet statusStr = pumpStatus ? \"ON\" : \"OFF\";\n\n// Build JSON payload\nmsg.payload = {\n    device_id: \"ENERGY-MTR-005\",\n    pump_id: \"PUMP-5\",        // update as needed\n    device_name: \"Diesel_Pump\",   // update as needed\n    time_stamp: new Date().toISOString(),\n    status: statusStr,\n    st: pumpStatus\n};\n\n// Ensure MQTT topic is set\nmsg.topic = \"/firesafety/pump/status\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 1500,
+        "wires": [
+            [
+                "5f3705dcb0527ff6"
+            ]
+        ]
+    },
+    {
+        "id": "123d57216b250fcb",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1500,
+        "wires": [
+            [
+                "62e031ae070fed54"
+            ]
+        ]
+    },
+    {
+        "id": "9dfba3698d43ce39",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Operation",
+        "func": "// Handle both array and direct boolean cases\nlet pumpStatus;\n\n// If payload is array-like, grab [0], else use payload directly\nif (Array.isArray(msg.payload)) {\n    pumpStatus = msg.payload[0];\n} else {\n    pumpStatus = msg.payload;\n}\n\n// Normalize pumpStatus to a real boolean\nif (typeof pumpStatus === \"string\") {\n    pumpStatus = pumpStatus.toLowerCase() === \"true\";\n} else if (typeof pumpStatus === \"number\") {\n    pumpStatus = pumpStatus !== 0;\n}\n\n// Convert to ON / OFF\nlet statusStr = pumpStatus ? \"TRIP\" : \"OFF\";\n\n\n// Build JSON payload\nmsg.payload = {\n    device_id: \"ENERGY-MTR-001\",\n    pump_id: \"PUMP-1\",        // update as needed\n    device_name: \"Main_Hydrant_Pump\",   // update as needed\n    time_stamp: new Date().toISOString(),\n    status: statusStr,\n    st: pumpStatus\n};\n\n// Ensure MQTT topic is set\nmsg.topic = \"/firesafety/pump/status\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 1080,
+        "wires": [
+            [
+                "5f3705dcb0527ff6"
+            ]
+        ]
+    },
+    {
+        "id": "6b56a6372489c434",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Operation",
+        "func": "// Handle both array and direct boolean cases\nlet pumpStatus;\n\n// If payload is array-like, grab [0], else use payload directly\nif (Array.isArray(msg.payload)) {\n    pumpStatus = msg.payload[0];\n} else {\n    pumpStatus = msg.payload;\n}\n\n// Normalize pumpStatus to a real boolean\nif (typeof pumpStatus === \"string\") {\n    pumpStatus = pumpStatus.toLowerCase() === \"true\";\n} else if (typeof pumpStatus === \"number\") {\n    pumpStatus = pumpStatus !== 0;\n}\n\n// Convert to ON / OFF\nlet statusStr = pumpStatus ? \"TRIP\" : \"OFF\";\n\n// Build JSON payload\nmsg.payload = {\n    device_id: \"ENERGY-MTR-001\",   \n    pump_id: \"PUMP-2\",     // update as needed\n    device_name: \"Hydrant_Jockey_Pump\",   // update as needed\n    time_stamp: new Date().toISOString(),\n    status: statusStr,\n    st: pumpStatus\n};\n\n// Ensure MQTT topic is set\nmsg.topic = \"/firesafety/pump/status\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 1200,
+        "wires": [
+            [
+                "5f3705dcb0527ff6"
+            ]
+        ]
+    },
+    {
+        "id": "621d12bc9fe9a063",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Operation",
+        "func": "// Handle both array and direct boolean cases\nlet pumpStatus;\n\n// If payload is array-like, grab [0], else use payload directly\nif (Array.isArray(msg.payload)) {\n    pumpStatus = msg.payload[0];\n} else {\n    pumpStatus = msg.payload;\n}\n\n// Normalize pumpStatus to a real boolean\nif (typeof pumpStatus === \"string\") {\n    pumpStatus = pumpStatus.toLowerCase() === \"true\";\n} else if (typeof pumpStatus === \"number\") {\n    pumpStatus = pumpStatus !== 0;\n}\n\n// Convert to ON / OFF\nlet statusStr = pumpStatus ? \"TRIP\" : \"OFF\";\n\n// Build JSON payload\nmsg.payload = {\n    device_id: \"ENERGY-MTR-002\",\n    pump_id: \"PUMP-3\",        // update as needed\n    device_name: \"Sprinkler_Pump\",   // update as needed\n    time_stamp: new Date().toISOString(),\n    status: statusStr,\n    st: pumpStatus\n};\n\n// Ensure MQTT topic is set\nmsg.topic = \"/firesafety/pump/status\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 1320,
+        "wires": [
+            [
+                "5f3705dcb0527ff6"
+            ]
+        ]
+    },
+    {
+        "id": "8ff737598c7ccc4f",
+        "type": "function",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Pump Operation",
+        "func": "// Handle both array and direct boolean cases\nlet pumpStatus;\n\n// If payload is array-like, grab [0], else use payload directly\nif (Array.isArray(msg.payload)) {\n    pumpStatus = msg.payload[0];\n} else {\n    pumpStatus = msg.payload;\n}\n\n// Normalize pumpStatus to a real boolean\nif (typeof pumpStatus === \"string\") {\n    pumpStatus = pumpStatus.toLowerCase() === \"true\";\n} else if (typeof pumpStatus === \"number\") {\n    pumpStatus = pumpStatus !== 0;\n}\n\n// Convert to ON / OFF\nlet statusStr = pumpStatus ? \"TRIP\" : \"OFF\";\n\n// Build JSON payload\nmsg.payload = {\n    device_id: \"ENERGY-MTR-002\",  \n    pump_id: \"PUMP-4\",      // update as needed\n    device_name: \"Sprinkler_Jockey_Pump\",   // update as needed\n    time_stamp: new Date().toISOString(),\n    status: statusStr,\n    st: pumpStatus\n};\n\n// Ensure MQTT topic is set\nmsg.topic = \"/firesafety/pump/status\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 1440,
+        "wires": [
+            [
+                "5f3705dcb0527ff6"
+            ]
+        ]
+    },
+    {
+        "id": "314564124b7d8d29",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1080,
+        "wires": [
+            [
+                "2173e2ac7e1a0779"
+            ]
+        ]
+    },
+    {
+        "id": "341dc310114b246a",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1200,
+        "wires": [
+            [
+                "bc4e57384bb979ce"
+            ]
+        ]
+    },
+    {
+        "id": "8e8712824917bd80",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1320,
+        "wires": [
+            [
+                "f2025be1b3bbe6c1"
+            ]
+        ]
+    },
+    {
+        "id": "c95d16a1b93cdf77",
+        "type": "delay",
+        "z": "b9c5aa0aa5b4e111",
+        "name": "Delay 60ms",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1440,
+        "wires": [
+            [
+                "686267c32a53e5de"
+            ]
+        ]
+    },
+    {
+        "id": "8dbea5168bd31e92",
+        "type": "modbus-client",
+        "name": "modbus-read-rtu",
+        "clienttype": "serial",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "COM5",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "even",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "",
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "5b217b1eb83e00a5",
+        "type": "mqtt-broker",
+        "name": "MQTT",
+        "broker": "localhost",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "022d5ce3d5d401f8",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-modbus": "5.44.1"
+        }
+    }
+]
